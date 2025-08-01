@@ -9,7 +9,7 @@ Este proyecto corresponde al desafío técnico solicitado por **Desis** para eva
 - ✅ **HTML5**
 - ✅ **CSS3** (nativo, sin frameworks)
 - ✅ **JavaScript** (puro, con uso de `fetch()` / AJAX)
-- ✅ **PHP** 8.4 (8.4.11) (sin frameworks)
+- ✅ **PHP** (8.4.11 - sin frameworks)
 - ✅ **PostgreSQL** (como gestor de base de datos)
 
 ---
@@ -20,7 +20,7 @@ Este proyecto corresponde al desafío técnico solicitado por **Desis** para eva
 
 git clone https://github.com/mel-1804/Desis-Admission-Test.git
 
-cd Desis-Admission-Test
+cd desis-product-register
 
 ### 2. Crear la base de datos
 
@@ -28,20 +28,11 @@ Asegúrate de tener PostgreSQL instalado.
 
 Crea una base de datos llamada productos (o edita db.php para usar otro nombre).
 
-Ejecuta el script init.sql ubicado en database/:
-
-CREATE TABLE products (
-id SERIAL PRIMARY KEY,
-code VARCHAR(50) NOT NULL,
-name VARCHAR(255) NOT NULL,
-description TEXT,
-quantity INTEGER NOT NULL,
-price NUMERIC(10, 2) NOT NULL
-);
+Ejecuta el script init.sql ubicado en database.
 
 ### 3. Configurar conexión en backend/db.php
 
-Edita tus credenciales de conexión a la base de datos:
+En el archivo db.php edita tus credenciales de conexión a la base de datos:
 
 $host = "localhost";
 $dbname = "productos";
@@ -50,12 +41,19 @@ $password = "TU_CONTRASEÑA";
 
 ### 4. Ejecutar el servidor
 
-Con PHP instalado, corre este comando desde la raíz del proyecto o la carpeta frontend/:
+Debes tener PHP instalado.
+Este proyecto está pensado para ejecutarse en un entorno local usando XAMPP (o similar). Asegúrate de tener Apache y PHP habilitados en el panel de control de XAMPP.
 
-php -S localhost:8000
-Y abre en el navegador:
+Pasos:
+Copia la carpeta del proyecto dentro del directorio htdocs de XAMPP.
 
-http://localhost:8000
+Ejemplo: C:\xampp\htdocs\desis-product-register
+
+Abre el panel de XAMPP y asegúrate de iniciar el módulo Apache (y PostgreSQL si lo tienes configurado localmente, o asegúrate de que esté activo externamente).
+
+Accede al proyecto desde el navegador:
+
+http://localhost/desis-product-register/index.html (para visualizar el formulario).
 
 ## Funcionalidad
 

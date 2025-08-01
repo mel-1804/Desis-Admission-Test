@@ -25,17 +25,10 @@ CREATE TABLE productos (
     ),
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
--- Creación de ENUM para las monedas.
+-- Creación de tipos de monedas.
 CREATE TYPE tipo_moneda AS ENUM ('CLP', 'USD', 'EUR', 'UF', 'BTC');
--- Para consultar los valores del ENUM tipo_moneda
-SELECT enumlabel
-FROM pg_enum
-    JOIN pg_type ON pg_enum.enumtypid = pg_type.oid
-WHERE pg_type.typname = 'tipo_moneda';
---Creación de ENUM para bodegas y sucursales.
--- Tipo para las bodegas
+--Creación de tipos de bodegas y sucursales.
 CREATE TYPE tipo_bodega AS ENUM ('norte', 'centro', 'sur');
--- Tipo para las sucursales
 CREATE TYPE tipo_sucursal AS ENUM (
     'iquique',
     'calama',
