@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'desis_product_db';
+$dbname = 'desis_products_db';
 $user = 'postgres';
 $password = '1804';
 
