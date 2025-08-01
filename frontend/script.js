@@ -6,7 +6,7 @@ async function cargarOpciones() {
     if (!res.ok) throw new Error('Error al obtener opciones');
     const data = await res.json();
     
-    // Asumimos selects con nombres 'warehouse', 'branch', 'currency'
+    // Seefine los selects con nombres 'warehouse', 'branch', 'currency' llamándolos desde el HTML
     const selectWarehouse = document.querySelector('select[name="warehouse"]');
     const selectBranch = document.querySelector('select[name="branch"]');
     const selectCurrency = document.querySelector('select[name="currency"]');
