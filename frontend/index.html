@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Producto</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Formulario de Producto</h1>
+
+    <form id="productForm">
+    <div class="form-columns">
+      <div class="column">
+        
+        <label>
+          Código
+          <input type="text" name="code" required pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
+        </label>
+
+        <label>
+          Bodega
+          <select name="warehouse" required>
+            <option value="" disabled selected>Seleccione una bodega</option>
+            <option value="bodega1">Bodega 1</option>
+            <option value="bodega2">Bodega 2</option>
+            <option value="bodega3">Bodega 3</option>
+          </select>
+        </label>
+
+        <label>
+          Moneda
+          <select name="currency" required>
+            <option value="" disabled selected>Seleccione moneda</option>
+            <option value="CLP">CLP - Peso Chileno</option>
+            <option value="USD">USD - Dólar Americano</option>
+            <option value="EUR">EUR - Euro</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="column">
+        <label>
+          Nombre
+          <input type="text" name="name" required pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
+        </label>
+
+        <label>
+          Sucursal
+          <select name="branch" required>
+            <option value="" disabled selected>Seleccione una sucursal</option>
+            <option value="sucursal1">Sucursal Viña del Mar</option>
+            <option value="sucursal2">Sucursal Santiago</option>
+            <option value="sucursal3">Sucursal Concepción</option>
+          </select>
+        </label>
+
+        <label>
+          Precio
+          <input type="number" step="0.01" name="price" required min="0" />
+        </label>
+      </div>
+    </div>
+
+    <label>Material del Producto</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="materials[]" value="plastic" /> Plástico</label>
+      <label><input type="checkbox" name="materials[]" value="metal" /> Metal</label>
+      <label><input type="checkbox" name="materials[]" value="wood" /> Madera</label>
+      <label><input type="checkbox" name="materials[]" value="glass" /> Vidrio</label>
+      <label><input type="checkbox" name="materials[]" value="textil" /> Textil</label>
+    </div>
+
+    <label>
+      Descripción
+      <textarea name="description" required rows="4" cols="50" placeholder="Descripción del producto"></textarea>
+    </label>
+
+    <div class="button-container">
+        <button type="submit">Guardar Producto</button>
+    </div>
+  </form>
+</div>
+
+  <p id="message"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
