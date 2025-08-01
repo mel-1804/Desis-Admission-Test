@@ -23,11 +23,11 @@ $bodega = $data['bodega'] ?? '';
 $sucursal = $data['sucursal'] ?? '';
 $moneda = $data['moneda'] ?? '';
 $precio = $data['precio'] ?? 0;
-$plastico = !empty($data['plastico']);
-$metal = !empty($data['metal']);
-$madera = !empty($data['madera']);
-$vidrio = !empty($data['vidrio']);
-$textil = !empty($data['textil']);
+$plastico = !empty($data['plastico']) ? true : false;
+$metal = !empty($data['metal']) ? true : false;
+$madera = !empty($data['madera']) ? true : false;
+$vidrio = !empty($data['vidrio']) ? true : false;
+$textil = !empty($data['textil']) ? true : false;
 $descripcion = $data['descripcion'] ?? '';
 
 try {
@@ -51,11 +51,11 @@ try {
         ':sucursal' => $sucursal,
         ':moneda' => $moneda,
         ':precio' => $precio,
-        ':plastico' => $plastico,
-        ':metal' => $metal,
-        ':madera' => $madera,
-        ':vidrio' => $vidrio,
-        ':textil' => $textil,
+        'plastico' => $plastico ? 1 : 0,
+        'metal' => $metal ? 1 : 0,
+        'madera' => $madera ? 1 : 0,
+        'vidrio' => $vidrio ? 1 : 0,
+        'textil' => $textil ? 1 : 0,
         ':descripcion' => $descripcion
     ]);
 

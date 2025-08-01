@@ -25,7 +25,7 @@ document.getElementById("productForm").addEventListener("submit", async function
     alert("El código del producto debe tener entre 5 y 15 caracteres.");
     return;
   }
-  const response = await fetch('/backend/check_codigo.php?codigo=' + encodeURIComponent(code)); // Consulta al backend si el codigo existe
+  const response = await fetch('/desis-admission/check_codigo.php?codigo=' + encodeURIComponent(code)); // Consulta al backend si el codigo existe
   const data = await response.json();
   if (data.exists) {
     alert("El código del producto ya está registrado.");
@@ -87,8 +87,40 @@ document.getElementById("productForm").addEventListener("submit", async function
     return;
   }
 
-  // Si todo está correcto
-  productosRegistrados.add(code.toLowerCase()); // Simulamos guardado del código
-  alert("Producto registrado con éxito.");
-  form.reset();
+  const dataToSend = {
+    codigo: code,
+    nombre: name,
+    precio: parseFloat(price),
+    bodega: warehouse,
+    sucursal: branch,
+    moneda: currency,
+    plastico: materials.some(m => m.value === 'plastic'),
+    metal: materials.some(m => m.value === 'metal'),
+    madera: materials.some(m => m.value === 'wood'),
+    vidrio: materials.some(m => m.value === 'glass'),
+    textil: materials.some(m => m.value === 'textil'),
+    descripcion: description,
+  };
+
+  try {
+    const response = await fetch('http://localhost/desis-admission/save_product.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToSend)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert(result.message || 'Producto registrado con éxito.');
+      form.reset();
+    } else {
+      alert(result.error || 'Ocurrió un error al guardar el producto.');
+    }
+  } catch (error) {
+    alert('Error en la conexión con el servidor: ' + error.message);
+  }
+
 });
