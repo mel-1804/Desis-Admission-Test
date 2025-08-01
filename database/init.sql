@@ -25,3 +25,35 @@ CREATE TABLE productos (
     ),
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- Creación de ENUM para las monedas.
+CREATE TYPE tipo_moneda AS ENUM ('CLP', 'USD', 'EUR', 'UF', 'BTC');
+-- Para consultar los valores del ENUM tipo_moneda
+SELECT enumlabel
+FROM pg_enum
+    JOIN pg_type ON pg_enum.enumtypid = pg_type.oid
+WHERE pg_type.typname = 'tipo_moneda';
+--Creación de ENUM para bodegas y sucursales.
+-- Tipo para las bodegas
+CREATE TYPE tipo_bodega AS ENUM ('norte', 'centro', 'sur');
+-- Tipo para las sucursales
+CREATE TYPE tipo_sucursal AS ENUM (
+    'iquique',
+    'calama',
+    'valparaiso',
+    'santiago',
+    'concepcion',
+    'temuco'
+);
+--Creación de tabla que relacione bodegas y sucursales.
+CREATE TABLE bodega_sucursal (
+    bodega tipo_bodega,
+    sucursal tipo_sucursal
+);
+-- Insertar datos en la tabla bodega_sucursal estableciendo la relación efectiva entre bodegas y sucursales
+INSERT INTO bodega_sucursal
+VALUES ('norte', 'iquique'),
+    ('norte', 'calama'),
+    ('centro', 'valparaiso'),
+    ('centro', 'santiago'),
+    ('sur', 'concepcion'),
+    ('sur', 'temuco');

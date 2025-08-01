@@ -16,26 +16,20 @@
         
         <label>
           Código
-          <input type="text" name="code" required pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
+          <input type="text" name="code" pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
         </label>
 
         <label>
           Bodega
-          <select name="warehouse" required>
-            <option value="" disabled selected>Seleccione una bodega</option>
-            <option value="bodega1">Bodega 1</option>
-            <option value="bodega2">Bodega 2</option>
-            <option value="bodega3">Bodega 3</option>
+          <select name="warehouse">
+            <option value="" disabled selected></option>
           </select>
         </label>
 
         <label>
           Moneda
-          <select name="currency" required>
-            <option value="" disabled selected>Seleccione moneda</option>
-            <option value="CLP">CLP - Peso Chileno</option>
-            <option value="USD">USD - Dólar Americano</option>
-            <option value="EUR">EUR - Euro</option>
+          <select name="currency">
+            <option value="" disabled selected></option>
           </select>
         </label>
       </div>
@@ -43,22 +37,19 @@
       <div class="column">
         <label>
           Nombre
-          <input type="text" name="name" required pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
+          <input type="text" name="name" pattern="[A-Za-z0-9\s\-]+" title="Solo letras, números, espacios y guiones" />
         </label>
 
         <label>
           Sucursal
           <select name="branch" required>
-            <option value="" disabled selected>Seleccione una sucursal</option>
-            <option value="sucursal1">Sucursal Viña del Mar</option>
-            <option value="sucursal2">Sucursal Santiago</option>
-            <option value="sucursal3">Sucursal Concepción</option>
+            <option value="" disabled selected></option>
           </select>
         </label>
 
         <label>
           Precio
-          <input type="number" step="0.01" name="price" required min="0" />
+          <input type="text" name="price" min="0" />
         </label>
       </div>
     </div>
@@ -74,7 +65,7 @@
 
     <label>
       Descripción
-      <textarea name="description" required rows="4" cols="50" placeholder="Descripción del producto"></textarea>
+      <textarea name="description" rows="4" cols="50" placeholder="Descripción del producto"></textarea>
     </label>
 
     <div class="button-container">

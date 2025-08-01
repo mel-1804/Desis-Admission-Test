@@ -1,6 +1,69 @@
+// Para cargar las opciones de bodega, sucursal y moneda dinamicamente desde la base de datos
+let sucursalesPorBodega = {};
+async function cargarOpciones() {
+  try {
+    const res = await fetch('http://localhost/desis-admission/enum_values.php');
+    if (!res.ok) throw new Error('Error al obtener opciones');
+    const data = await res.json();
+    
+    // Asumimos selects con nombres 'warehouse', 'branch', 'currency'
+    const selectWarehouse = document.querySelector('select[name="warehouse"]');
+    const selectBranch = document.querySelector('select[name="branch"]');
+    const selectCurrency = document.querySelector('select[name="currency"]');
+
+    // Vaciar selects por si acaso
+    selectWarehouse.innerHTML = '<option value="" disabled selected></option>';
+    selectBranch.innerHTML = '<option value="" disabled selected></option>';
+    selectCurrency.innerHTML = '<option value="" disabled selected></option>';
+    
+    // Llenar opciones de bodegas
+    data.bodegas.forEach(bodega => {
+      const option = document.createElement('option');
+      option.value = bodega;
+      option.textContent = bodega.charAt(0).toUpperCase() + bodega.slice(1);
+      selectWarehouse.appendChild(option);
+    });
+    
+    // Llenar opciones de sucursales
+    sucursalesPorBodega = data.sucursales_por_bodega;
+
+    // Escuchar cambios en el select de bodega
+    selectWarehouse.addEventListener('change', () => {
+      const seleccionada = selectWarehouse.value;
+      const sucursales = sucursalesPorBodega[seleccionada] || [];
+
+      // Limpiar el select de sucursales
+      selectBranch.innerHTML = '<option value="" disabled selected></option>';
+
+      // Añadir las sucursales correspondientes
+      sucursales.forEach(sucursal => {
+        const option = document.createElement('option');
+        option.value = sucursal;
+        option.textContent = sucursal.charAt(0).toUpperCase() + sucursal.slice(1);
+        selectBranch.appendChild(option);
+      });
+    });
+    
+    // Llenar opciones de monedas
+    data.monedas.forEach(moneda => {
+      const option = document.createElement('option');
+      option.value = moneda;
+      option.textContent = moneda.toUpperCase();
+      selectCurrency.appendChild(option);
+    });
+    
+  } catch (error) {
+    console.error('Error cargando opciones:', error);
+    alert('No se pudieron cargar las opciones de bodega, sucursal y moneda.');
+  }
+}
+document.addEventListener('DOMContentLoaded', cargarOpciones);
+
+
+// Este es el listener del formulario que se encarga de validar los datos y enviarlos al backend
 document.getElementById("productForm").addEventListener("submit", async function (e) {
   e.preventDefault(); 
-
+// Preparar los datos para enviarlos a la base de datos
   const form = e.target;
   const code = form.code.value.trim();
   const name = form.name.value.trim();
