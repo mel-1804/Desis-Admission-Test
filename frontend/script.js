@@ -88,7 +88,7 @@ document.getElementById("productForm").addEventListener("submit", async function
     alert("El código del producto debe tener entre 5 y 15 caracteres.");
     return;
   }
-  const response = await fetch('/desis-admission/check_codigo.php?codigo=' + encodeURIComponent(code)); // Consulta al backend si el codigo existe
+  const response = await fetch('/desis-admission/check_code.php?codigo=' + encodeURIComponent(code)); // Consulta al backend si el codigo existe
   const data = await response.json();
   if (data.exists) {
     alert("El código del producto ya está registrado.");
