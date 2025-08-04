@@ -10,7 +10,7 @@ if (!isset($_GET['codigo'])) {
     echo json_encode(['error' => 'No se recibió código']);
     exit;
 }
- // Asigna el valor de código a la variable $codigo
+ // Asigna el valor de código a la variable $codigo. $_GET es una sintaxis de PHP que permite acceder a los parámetros enviados por URL.
 $codigo = $_GET['codigo'];
 
 try {
@@ -25,5 +25,5 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Error al consultar base de datos']);
 }
-// Cada uno de estos métodos (prepare, execute, fetchColumn) son métodos de objetos, lo cual sí es OOP, aunque no hayas creado tus propias clases.
+// Cada uno de estos métodos (prepare, execute, fetchColumn) son métodos de objetos, lo cual sí es OOP, aunque no se haya creado una clase propia.
 ?>
