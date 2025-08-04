@@ -14,7 +14,8 @@ if (!isset($_GET['codigo'])) {
 $codigo = $_GET['codigo'];
 
 try {
-    // Prepara la consulta para verificar si el código ya existe
+    // Prepara la consulta para verificar si el código ya existe.
+    //$stmt e suna instancia de la clase PDOStatement, que representa una sentencia SQL preparada.
     $stmt = $conn->prepare('SELECT COUNT(*) FROM productos WHERE codigo = :codigo');
     $stmt->execute(['codigo' => $codigo]);
     // Fetch el resultado, que será un número de filas que coinciden con el código
