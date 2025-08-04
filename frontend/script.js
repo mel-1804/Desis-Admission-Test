@@ -80,12 +80,12 @@ document.getElementById("productForm").addEventListener("submit", async function
     alert("El código del producto no puede estar en blanco.");
     return;
   }
-  if (!codeRegex.test(code)) {
-    alert("El código del producto debe contener letras y números");
-    return;
-  }
   if (code.length < 5 || code.length > 15) {
     alert("El código del producto debe tener entre 5 y 15 caracteres.");
+    return;
+  }
+  if (!codeRegex.test(code)) {
+    alert("El código del producto debe contener letras y números");
     return;
   }
   const response = await fetch('/desis-admission/check_code.php?codigo=' + encodeURIComponent(code)); // Consulta al backend si el codigo existe
