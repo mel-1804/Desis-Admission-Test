@@ -9,8 +9,8 @@ Este proyecto corresponde al desafío técnico solicitado por **Desis** para eva
 - ✅ **HTML5**
 - ✅ **CSS3** (nativo, sin frameworks)
 - ✅ **JavaScript** (puro, con uso de `fetch()` / AJAX)
-- ✅ **PHP** (8.4.11 - sin frameworks)
-- ✅ **PostgreSQL** (como gestor de base de datos)
+- ✅ **PHP** (v8.4.11 - sin frameworks)
+- ✅ **PostgreSQL** (v17.5 - como gestor de base de datos)
 
 ---
 
